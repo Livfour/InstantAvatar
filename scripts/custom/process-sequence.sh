@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Check if path is specified as an argument
 if [ -z "$1" ]; then
