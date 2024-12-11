@@ -21,16 +21,15 @@ fi
 
 path=$(readlink -f "$1")
 
-# Run OpenPose
-if [ ! -f "$path/keypoints.npy" ]; then
-  echo "Running OpenPose in $path/images"
-  bash scripts/custom/run-openpose-bin.sh $path/images
-fi
+# # Run OpenPose
+# if [ ! -f "$path/keypoints.npy" ]; then
+#   echo "Running OpenPose in $path/images"
+#   bash scripts/custom/run-openpose-bin.sh $path/images
+# fi
 
 if [ ! -d "$path/masks" ]; then
   echo "Running mask in $path"
   python scripts/custom/run-sam.py --data_dir $path
-  # python scripts/custom/run-rvm.py --data_dir $path
   python scripts/custom/extract-largest-connected-components.py --data_dir $path
 fi
 
